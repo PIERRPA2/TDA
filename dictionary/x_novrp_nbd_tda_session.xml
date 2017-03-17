@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="TDA Session" max_length="40" name="x_novrp_nbd_tda_session" type="collection">
+        <element label="Actual End Time" max_length="40" name="actual_end_time" read_only="true" type="glide_time"/>
+        <element label="Actual Start Time" max_length="40" name="actual_start_time" read_only="true" type="glide_time"/>
+        <element default="javascript:gs.getProperty(&quot;x_novrp_nbd.tda_session.attended_by&quot;);" label="Attended By" max_length="4000" name="attended_by" reference="sys_user" type="glide_list"/>
+        <element attributes="max_unit=hours" label="Available Time" max_length="40" name="available_time" read_only="true" type="glide_duration"/>
+        <element display="true" label="Date" mandatory="true" max_length="40" name="date" type="glide_date"/>
+        <element attributes="max_unit=hours" label="Duration" max_length="20" name="duration" read_only="true" type="glide_duration"/>
+        <element default="javascript:gs.getProperty(&quot;x_novrp_nbd.tda_session.end_time&quot;);" label="End Time" mandatory="true" max_length="40" name="end_time" type="glide_time"/>
+        <element label="Minutes Of The Meeting" max_length="4000" name="minutes_of_the_meeting" type="string"/>
+        <element attributes="max_unit=hours" label="Overtime" max_length="40" name="overtime" read_only="true" type="glide_duration"/>
+        <element default="javascript:gs.getProperty(&quot;x_novrp_nbd.tda_session.start_time&quot;);" label="Start Time" mandatory="true" max_length="40" name="start_time" type="glide_time"/>
+        <element choice="3" default="scheduling" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element label="Scheduling" sequence="1" value="scheduling"/>
+                <element label="Ready for TDA" sequence="2" value="ready"/>
+                <element label="Active" sequence="3" value="active"/>
+                <element label="Post Review" sequence="4" value="post review"/>
+                <element label="Closed Complete" sequence="5" value="closed"/>
+                <element label="Cancelled" sequence="6" value="cancel"/>
+            </choice>
+        </element>
+        <element default="0" label="Topics" max_length="40" name="topics" type="integer"/>
+        <element label="Watch List" max_length="4000" name="watch_list" reference="sys_user" type="glide_list"/>
+        <index name="index">
+            <element name="date"/>
+        </index>
+    </element>
+</database>

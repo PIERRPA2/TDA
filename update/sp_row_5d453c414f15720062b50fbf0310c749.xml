@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_row">
+    <sp_row action="INSERT_OR_UPDATE">
+        <class_name/>
+        <order>1</order>
+        <sp_column/>
+        <sp_container display_value="TDA Sessions - Container 1">f1353c414f15720062b50fbf0310c73c</sp_container>
+        <sys_class_name>sp_row</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-02 15:47:50</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>5d453c414f15720062b50fbf0310c749</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sp_row_5d453c414f15720062b50fbf0310c749</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-02 15:47:50</sys_updated_on>
+    </sp_row>
+</record_update>

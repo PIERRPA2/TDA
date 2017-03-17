@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>true</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_novrp_nbd_tda_topic</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_novrp_nbd_tda_topic">sessionVALCHANGES^ORdurationVALCHANGES^EQ<item endquery="false" field="session" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="false" field="duration" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>NVS - Update Time Left In Session</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	if(previous.session != current.session){
+		calculateTimeLeft(previous);
+	}
+	
+	calculateTimeLeft(current);
+	
+	function calculateTimeLeft(record){
+		if(!record.session){
+			return;
+		}
+		
+		var overTime = 0;
+		var newDuration = 0;
+		var glideRecord = new GlideRecord("x_novrp_nbd_tda_topic");
+		glideRecord.addQuery("session", record.session);
+		glideRecord.query();
+		
+		while(glideRecord.next()){
+			newDuration += glideRecord.duration.dateNumericValue();
+		}
+		
+		var session = record.session.getRefRecord();
+		var totalTime = session.duration.dateNumericValue();
+		var availableTime = 0;
+		
+		if(totalTime < newDuration){
+			availableTime = 0;
+			overTime = new GlideDuration(newDuration - totalTime);
+			session.overtime = overTime;
+			gs.addErrorMessage("Overtime by " + overTime.getByFormat("HH:mm"));
+		}else{
+			availableTime = totalTime - newDuration;
+		}
+		
+		session.overtime.setDateNumericValue(overTime);
+		session.available_time.setDateNumericValue(availableTime*1000);
+		session.update();
+	}
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-02-18 19:55:20</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>65dab34d4f09fa003fb88e401310c7d3</sys_id>
+        <sys_mod_count>69</sys_mod_count>
+        <sys_name>NVS - Update Time Left In Session</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sys_script_65dab34d4f09fa003fb88e401310c7d3</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-13 13:47:25</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=65dab34d4f09fa003fb88e401310c7d3"/>
+</record_update>

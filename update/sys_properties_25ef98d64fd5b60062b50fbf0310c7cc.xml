@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description/>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_novrp_nbd.tda_session.end_time</name>
+        <read_roles/>
+        <suffix>tda_session.end_time</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-06 11:27:08</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>25ef98d64fd5b60062b50fbf0310c7cc</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_novrp_nbd.tda_session.end_time</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sys_properties_25ef98d64fd5b60062b50fbf0310c7cc</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-06 11:31:21</sys_updated_on>
+        <type>string</type>
+        <value>11:00:00</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=25ef98d64fd5b60062b50fbf0310c7cc"/>
+</record_update>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>false</admin_overrides>
+        <advanced>true</advanced>
+        <condition table="x_novrp_nbd_tda_topic.session">stateINpending schedule,scheduled^EQ<item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <description>Allow write for session in x_novrp_nbd_tda_topic, for users with role x_novrp_nbd.tda_session_admin, and if the ACL condition (stateINpending schedule,scheduled^EQ) evaluates to true.</description>
+        <name>x_novrp_nbd_tda_topic.session</name>
+        <operation display_value="write">write</operation>
+        <script/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-02 14:47:06</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>6f47ecc94f91720062b50fbf0310c76d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_novrp_nbd_tda_topic.session</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sys_security_acl_6f47ecc94f91720062b50fbf0310c76d</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-08 16:38:38</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+</record_update>

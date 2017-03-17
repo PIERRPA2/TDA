@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $uibModal, spUtil, $timeout, $rootScope) {
+  var c = this;
+	var data = $scope.data;
+	var topics = data.topics;
+	
+	$scope.tables = [
+		{
+			"visible": true,
+			"data": topics.data,
+			"filter": {
+				"field": null,
+				"operation": null,
+				"value": null
+			},
+			"openForm": function (record) {
+				var table = this;
+				var params = {
+					"table": record.table,
+					"sys_id": record.id
+				};
+				
+				spUtil.get("widget-form", params).then(function(response) {
+					table.visible = false;
+					table.form = response;
+				});
+			},
+			"columns": topics.columns,
+			"reverse": false,
+			"propertyName": null,
+			"sortBy": function(propertyName) {
+				if(this.propertyName === propertyName){
+					this.reverse = !this.reverse ? true : "";
+					this.propertyName = this.reverse != "" ? propertyName : "";
+				}else{
+					this.reverse = false;
+					this.propertyName = propertyName;
+				}
+				
+				$scope.getData();
+			}
+		}
+	];
+	
+	$scope.getDate = function(value){
+		var day = value.splice(0,2);
+		var month = value.splice(3,5);
+		var year = value.splice(6,10);
+		
+		return new Date(year, month, day);
+	}
+	
+	$scope.getData = function(){
+		c.data ={
+			"encodedQuery": getFilter(),
+			"sortBy": getSortBy()
+		}
+		
+		$timeout(function(){
+			c.server.update($scope).then(function(response){
+				var topics = response.topics;
+				$scope.tables[0].data = topics.data;
+			})
+		}, 1);
+	}
+	
+	getFilter = function(){
+		var filter = $scope.tables[0].filter;
+		
+		if(!filter.field || !filter.operation){
+			return "";
+		}
+		
+		var encodedQuery = filter.field + filter.operation;
+		
+		if(filter.operation.indexOf("EMPTY") == -1){
+			encodedQuery += filter.value;	
+		}
+		
+		return encodedQuery;
+	}
+	
+	getSortBy = function(){
+		var table = $scope.tables[0];
+		
+		var sortBy = {
+			"field": table.propertyName,
+			"reverse": table.reverse
+		}
+		
+		return sortBy;
+	}
+	
+	$scope.clearFilter = function(){
+		var table = $scope.tables[0];
+		var filter = table.filter;
+		
+		$scope.tables[0].filter = {
+			"field": "",
+			"operation": "",
+			"value": ""
+		}
+		$scope.getData();
+	}
+	
+	spUtil.recordWatch($scope, "x_novrp_nbd_tda_topic", null, function(){
+		c.server.update().then(function(response){
+			$scope.tables[0].data = response.topics.data;
+		});
+	})
+	
+	$scope.getDate = function(value){
+		if(!value){
+			return "-";
+		}
+		
+		var day = value.slice(0,2);
+		var month = value.slice(3,5);
+		var year = value.slice(6,11);
+
+		return new Date(year, month - 1, day);
+	}
+	
+	c.showSearchField = function(field){
+		$scope.filter.field = field;
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.table-row-active{
+  color:#ec8026;
+}
+
+.table &gt; thead &gt; tr &gt; th,
+.table &gt; tbody &gt; tr &gt; td  {
+  vertical-align: middle;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>nvs-tda-topics</id>
+        <internal>false</internal>
+        <link/>
+        <name>NVS - TDA Topics</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function(input) {
+	var encodedQuery = "on_behalf_of=" + gs.getUserID();
+	var orderBy = "sys_created_on";
+	var reverse = true;
+	
+	if(input){
+		if(input.encodedQuery){
+			encodedQuery += "^" + input.encodedQuery;
+		}
+		
+		if(input.sortBy){
+			orderBy = input.sortBy.field;
+			reverse = input.sortBy.reverse;
+		}
+	}
+	
+	data.topics = getRecords("x_novrp_nbd_tda_topic",
+													 encodedQuery,
+													 orderBy,
+													 reverse);
+	
+	function getRecords(table, encodedQuery, orderBy, reverse){
+		var result = [];
+		var columns = getFields(table);
+		
+		var glideRecord = new GlideRecordSecure(table);
+		if(encodedQuery){
+			glideRecord.addEncodedQuery(encodedQuery);	
+		}
+		
+		if(orderBy){
+			if(!reverse){
+				glideRecord.orderBy(orderBy);	
+			}else{
+				glideRecord.orderByDesc(orderBy);		
+			}
+		}
+		
+		glideRecord.query();
+
+		while(glideRecord.next()){
+			var sysId = glideRecord.getUniqueValue();			
+			var record = {};
+			
+			record.table = table;
+			record.id = sysId;
+			
+			for(var i=0; i<columns.length; i++){
+				record[columns[i].name] = glideRecord.getDisplayValue(columns[i].name);
+			}
+			
+			result.push(record);
+		}
+		return {"data": result,
+						"columns": columns};
+	}
+	
+	function getFields(table){
+		var listView = $sp.getListColumns(table, "default");
+		listView = listView.split(",");
+		var columns = [];
+		
+		for(var i=0; i<listView.length; i++){
+			var record = new GlideRecord("sys_dictionary");
+			record.addEncodedQuery("name=" + table + "^internal_type!=collection^ORinternal_type=NULL")
+			record.addQuery("element", listView[i]);
+			record.query();
+
+			if(record.next()){
+				columns.push({
+					"label": record.getValue("column_label"),
+					"name": record.getValue("element")
+				});
+			}	
+		}
+		
+		return columns;
+	}
+})(input);]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-07 17:03:57</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>cda6bee24f913a003fb88e401310c7df</sys_id>
+        <sys_mod_count>221</sys_mod_count>
+        <sys_name>NVS - TDA Topics</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sp_widget_cda6bee24f913a003fb88e401310c7df</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-16 15:41:25</sys_updated_on>
+        <template><![CDATA[<div>
+  <h3>
+    Technical Design Approval - My Topics
+    <div class="pull-right form-inline">
+      <a href="csm?id=tda_topic&sys_id=-1" class="btn btn-primary">New Topic</a>
+    </div>
+  </h3>
+  <div style="margin-top:30px" ng-repeat="table in tables">
+    <h3 ng-if="table.title">
+      {{ table.title }}
+    </h3>
+    <div ng-show="table.visible">
+      <form class="form-inline" style="margin-bottom:20px" ng-submit="getData()">
+        <select ng-model="table.filter.field" class="form-control">
+          <option value="">-- Choose Field --</option>
+          <option ng-repeat="column in table.columns" value="{{ column.name }}">{{ column.label }}</option>
+        </select>
+        <select ng-model="table.filter.operation" class="form-control">
+          <option value="=">Is</option>
+          <option value="!=">Is Not</option>
+          <option value="ISEMPTY">Is Empty</option>
+          <option value="ISNOTEMPTY">Is Not Empty</option>
+          <option value="LIKE">Contains</option>
+        </select>
+        <input ng-show="table.filter.operation.indexOf('EMPTY') == -1"
+               ng-model="table.filter.value"
+               class="form-control">
+        <button class="btn btn-primary glyphicon glyphicon-search"
+                ng-click="getData()">
+        </button>
+        <button class="btn btn-primary glyphicon glyphicon-remove"
+                ng-click="clearFilter()">
+        </button>
+      </form>
+      <table class="table table-bordered table-hover">
+         <thead>
+           <tr>
+             <th ng-repeat="column in table.columns" class="text-{{ $index == 0 ? 'left' : 'center' }}">
+               <span ng-click="table.sortBy(column.name)">{{ column.label }}
+               </span>
+               <span class="pull-right">
+                 <span ng-show="table.propertyName == column.name">
+                   <span ng-show="!table.reverse" class="glyphicon glyphicon-chevron-up"></span>
+                   <span ng-show="table.reverse" class="glyphicon glyphicon-chevron-down"></span>
+                 </span>
+               </span>
+             </th>
+             <th>
+             </th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr ng-repeat="record in table.data"
+               ng-class="(session && session == record.date) ? 'table-row-active' : ''">
+             <td ng-repeat="column in table.columns" class="text-{{ $index == 0 ? 'left' : 'center' }}" 
+                 ng-click="table.rowClick(record)">
+               <span ng-show="record[column.name] != ''">{{ record[column.name] }}</span>
+               <span ng-show="record[column.name] == ''">-</span>
+             </td>
+             <td class="text-center">
+               <a style="color:inherit; margin-left:5px"
+                  ng-href="csm?id=tda_topic&table={{ record.table }}&sys_id={{ record.id }}">
+                 <span class="glyphicon glyphicon-pencil"></span>
+               </a>
+             </td>
+           </tr>
+           <tr ng-if="result.length == 0">
+             <td colspan="{{ table.columns.length + 1 }}">
+                <em>No result</em>
+             </td>
+           </tr>
+         </tbody>
+      </table>
+    </div>
+   <div ng-show="!table.visible">
+      <div ng-if="!table.form">
+        <h2>
+          Loading...
+        </h2>
+      </div>
+      <div ng-if="table.form">
+        <h2 ng-click="table.visible = true">
+          <span class="fa fa-arrow-circle-o-left"></span>
+          Back to the list
+        </h2>
+      	<sp-widget widget="table.form"></sp-widget>
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

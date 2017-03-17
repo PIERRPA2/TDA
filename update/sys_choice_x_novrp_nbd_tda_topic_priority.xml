@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="priority" table="x_novrp_nbd_tda_topic" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>High</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>1</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-06 11:37:58</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4b62ecd64fd5b60062b50fbf0310c76a</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-06 11:38:04</sys_updated_on>
+            <value>high</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Medium</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>2</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-06 11:38:08</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1072ec9a4fd5b60062b50fbf0310c762</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-06 11:38:17</sys_updated_on>
+            <value>medium</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Low</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>3</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-06 11:38:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2a7220da4fd5b60062b50fbf0310c79e</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-06 11:38:24</sys_updated_on>
+            <value>low</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>priority</element>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-06 11:37:59</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>9072a45a4fd5b60062b50fbf0310c7c5</sys_id>
+            <sys_mod_count>9</sys_mod_count>
+            <sys_name>priority</sys_name>
+            <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+            <sys_update_name>sys_choice_x_novrp_nbd_tda_topic_priority</sys_update_name>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-06 11:38:24</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

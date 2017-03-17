@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="x_novrp_nbd_demand" label="Demand A&amp;E" max_length="40" name="x_novrp_nbd_demand_ae" sizeclass="25" type="collection"/>
+</database>

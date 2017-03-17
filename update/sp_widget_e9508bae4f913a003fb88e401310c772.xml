@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $rootScope, $uibModal, spUtil, $timeout) {
+  var c = this;
+	var data = $scope.data;
+	var topics = data.topics;
+	var sessions = data.sessions;
+
+	$scope.statistics = $scope.data.topics.statistics;
+	$scope.session = "";
+	$scope.tables = [
+		{
+			"record": null,
+			"data": sessions.data,
+			"paging" : {
+				"current": 1,
+				"numPerPage": 5,
+				"maxSize": 10,
+				"enabled": true
+			},
+			"getData": function(){
+				var result = [];
+				
+				var start = this.paging.current;
+				var max = this.paging.numPerPage;
+				
+				for(var i=(start-1)*max; i< start*max; i++){
+					if(i < this.data.length){
+						result.splice(i,0,this.data[i]);
+					}
+				}
+				
+				return result;
+			},
+			"clearFilter": function(){
+				this.filter = {
+					"field": null,
+					"operation": null,
+					"value": null,
+					"readonly": false
+				}
+				
+				filterTopics("");
+			},
+			"visible": true,
+			"form": null,
+			"filter": {
+				"field": null,
+				"operation": null,
+				"value": null,
+				"readonly": false
+			},
+			"openForm": function (item) {
+				var table = this;
+				this.record = item;
+				var params = {
+					"table": item.table,
+					"sys_id": item.id
+				};
+
+				$scope.session = item.date;
+				spUtil.get("widget-form-options", params).then(function(response) {
+					table.visible = false;
+					table.form = response;
+				});	
+			},
+			"filterFields": function (item) {
+				if(item == undefined){
+					return true;
+				}
+
+				var filter = $scope.tables[0].filter;
+
+				if(!filter.field){
+					return true;
+				}
+
+				var value = item[filter.field];
+				if(filter.operation.indexOf('empty') == -1){
+					if(!value){
+						return false;
+					}
+
+					if(filter.value){
+						if(filter.operation == "is"){
+							return value.toLowerCase().startsWith(filter.value.toLowerCase());
+						}
+
+						if(filter.operation == "is not"){
+							return value.toLowerCase() != filter.value.toLowerCase();
+						}
+
+						if(filter.operation == "contains"){
+							return value.toLowerCase().indexOf(filter.value.toLowerCase()) > -1;
+						}
+					}
+				}else{
+					if(filter.operation == "is empty"){
+						return value == "";
+					}
+
+					if(filter.operation == "is not empty"){
+						return value != "";
+					}
+				}
+
+				return true;
+			},
+			"columns": sessions.columns,
+			"reverse": false,
+			"rowClick": function(item){
+				$timeout(function() {
+					$scope.session = item.date;
+					$scope.$digest();
+				});
+			},
+			"sortBy": function(propertyName) {
+				if(this.propertyName === propertyName){
+					this.reverse = !this.reverse ? true : "";
+					this.propertyName = this.reverse != "" ? propertyName : "";
+				}else{
+					this.reverse = false;
+					this.propertyName = propertyName;
+				}
+			}
+		},
+		{
+			"record": null,
+			"paging" : {
+				"current": 1,
+				"numPerPage": 10,
+				"maxSize": 5,
+				"enabled": false
+			},
+			"actions":[
+				{
+					"type": "link",
+					"href": 'csm?id=tda_topic&sys_id=-1',
+					"label": "New Topic"
+				},
+				{
+					"type": "button",
+					"click": function(){
+						if($scope.session == ""){
+							spUtil.addErrorMessage("Please select a session first");
+							return;
+						}
+						
+						filterTopics($scope.session);
+				},
+					"label": "Show Scheduled Topics"
+				},
+				{
+					"type": "button",
+					"click": function(){
+						$scope.showUnscheduledTopics();
+					},
+					"label": "Show Unscheduled Topics"
+				}
+			],
+			"getData": function(){
+				if(!this.paging.enabled){
+					return this.data;
+				}
+				var result = [];
+				
+				var start = this.paging.current;
+				var max = this.paging.numPerPage;
+				
+				for(var i=(start-1)*max; i< start*max; i++){
+					if(i < this.data.length){
+						result.splice(i,0,this.data[i]);
+					}
+				}
+				
+				return result;
+			},
+			"clearFilter": function(){
+				this.filter = {
+					"field": null,
+					"operation": null,
+					"value": null,
+					"readonly": false
+				}
+			},
+			"visible": true,
+			"title": "Topics",
+			"data": topics.data,
+			"filter": {
+				"field": "session",
+				"operation": "is empty",
+				"value": "",
+				"readonly": false
+			},
+			"openForm": function (item) {
+				this.record = item;
+				var table = this;
+				var params = {
+					"table": item.table,
+					"sys_id": item.id
+				};
+				
+				spUtil.get("widget-form-options", params).then(function(response) {
+					table.visible = false;
+					table.form = response;
+				});	
+			},
+			"filterFields": function(item){
+				if(item == undefined){
+					return false;
+				}
+				
+				var filter = $scope.tables[1].filter;
+				
+				if(!filter.field){
+					return true;
+				}
+				
+				var value = item[filter.field];
+				if(filter.operation.indexOf('empty') == -1){
+					if(!value){
+						return false;
+					}
+
+					if(filter.value){
+						if(filter.operation == "is"){
+							return value.toLowerCase() == filter.value.toLowerCase();
+						}
+
+						if(filter.operation == "is not"){
+							return value.toLowerCase() != filter.value.toLowerCase();
+						}
+
+						if(filter.operation == "contains"){
+							return value.toLowerCase().indexOf(filter.value.toLowerCase()) > -1;
+						}
+					}
+				}else{
+					if(filter.operation == "is empty"){
+						return value == "";
+					}
+
+					if(filter.operation == "is not empty"){
+						return value != "";
+					}
+				}
+
+				return true;
+			},
+			"columns": topics.columns,
+			"reverse": false,
+			"propertyName": null,
+			"sortBy": function(propertyName) {
+				if(this.propertyName === propertyName){
+					this.reverse = !this.reverse ? true : "";
+					this.propertyName = this.reverse != "" ? propertyName : "";
+				}else{
+					this.reverse = false;
+					this.propertyName = propertyName;
+				}
+			}
+		}];
+	
+	$scope.getDate = function(value){
+		var day = value.splice(0,2);
+		var month = value.splice(3,5);
+		var year = value.splice(6,10);
+		
+		return new Date(year, month, day);
+	}
+	
+	$scope.$watch("session", function(newValue, oldValue){
+		filterTopics(newValue);
+	})
+	
+	$scope.$watch("tables[0].visible", function(){
+		$scope.tables[1].visible = true;
+	})
+	
+	function filterTopics(session){
+		var table = $scope.tables[1];
+		if(session){
+			table.title = "Topics (" + session + ")";
+		}else if($scope.session == ""){
+			table.title = "Unscheduled Topics";
+		}else{	
+			table.title = "Topics";
+		}
+		
+		table.filter = {
+			"field": "session",
+			"operation": session != "" ? "is": "is empty",
+			"value": session,
+			"readonly": session != ""
+		}
+		table.filterFields();
+	}
+	
+	spUtil.recordWatch($scope, "x_novrp_nbd_tda_session", null, function(){
+		c.server.update().then(function(response){
+			$scope.tables[0].data = response.sessions.data;
+		});
+	})
+	
+	spUtil.recordWatch($scope, "x_novrp_nbd_tda_topic", null, function(){
+		c.server.update().then(function(response){
+			$scope.tables[1].data = response.topics.data;
+			$scope.statistics = response.topics.statistics;
+		});
+	})
+	
+	$scope.getDate = function(value){
+		if(!value){
+			return "-";
+		}
+		
+		var day = value.slice(0,2);
+		var month = value.slice(3,5);
+		var year = value.slice(6,11);
+
+		return new Date(year, month - 1, day);
+	}
+	
+	$scope.showAllTopics = function(){
+		$scope.tables[1].filter = {
+			"field": null,
+			"operation": null,
+			"value": null
+		}
+	}
+	
+	$scope.showUnscheduledTopics = function(){
+		$scope.tables[1].filter = {
+			"field": "session",
+			"operation": "is empty"
+		}
+	}
+	
+	$rootScope.$on("sp.form.record.updated", function(event, data){
+		$scope.tables[1].visible = true;
+	});
+	
+	$scope.setSessionFilter = function(field, value){
+		$scope.tables[0].visible = true;
+		$scope.tables[0].filter = {
+			"field": field,
+			"operation": "is",
+			"value": value
+		}
+		
+		filterTopics("");
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.table-row-active{
+  color:#ec8026;
+}
+
+.table &gt; thead &gt; tr &gt; th,
+.table &gt; tbody &gt; tr &gt; td  {
+  vertical-align: middle;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 42px;
+}
+
+.simpleDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+.simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>nvs-tda-sessions</id>
+        <internal>false</internal>
+        <link/>
+        <name>NVS - TDA Sessions</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.sessions = getRecords("x_novrp_nbd_tda_session", null, null, "date");
+  data.topics = getRecords("x_novrp_nbd_tda_topic", "state!=new", null, "sys_created_on");
+	
+	function getRecords(table, encodedQuery, orderBy, orderByDesc){
+		var result = [];
+		var columns = getFields(table);
+		var statistics = [
+			{"label": "Pending Review", "value": 0, "icon": "clock-o"},
+			{"label": "Completed", "value": 0, "icon": "check"},
+			{"label": "Approved", "value": 0, "icon": "thumbs-o-up"},
+			{"label": "Rejected", "value": 0, "icon": "thumbs-o-down"}];
+		
+		var glideRecord = new GlideRecordSecure(table);
+		if(encodedQuery){
+			glideRecord.addEncodedQuery(encodedQuery);	
+		}
+		
+		if(orderBy){
+			glideRecord.orderBy(orderBy);	
+		}
+		
+		if(orderByDesc){
+			glideRecord.orderByDesc(orderByDesc);	
+		}
+		
+		glideRecord.query();
+		
+		var index = 1;
+		
+		while(glideRecord.next()){
+			var sysId = glideRecord.sys_id.toString();			
+			var record = {};
+			
+			record.table = table;
+			record.id = sysId;
+			var form = $sp.getForm(table, record.id);
+			record.fields = form._fields;
+			
+			for(var i=0; i<columns.length; i++){
+				record[columns[i].name] = glideRecord.getDisplayValue(columns[i].name);
+			}
+			
+			result.push(record);
+			
+			if(glideRecord.isValidField("state")){
+				if(glideRecord.approval == "pending review"){
+					statistics[0].value += 1;
+				}
+
+				if(glideRecord.state == "closed complete"){
+					statistics[1].value += 1;	
+					if(glideRecord.approval == "rejected"){
+						statistics[3].value += 1;	
+					}else if(glideRecord.approval == "approved"){
+						statistics[2].value += 1;	
+					}
+				}	
+			}
+		}
+		return {
+			"data": result,
+			"columns": columns,
+			"statistics": statistics
+		};
+	}
+	
+	function getFields(table){
+		var listView = $sp.getListColumns(table, "default");
+		listView = listView.split(",");
+		var columns = [];
+		
+		for(var i=0; i<listView.length; i++){
+			var record = new GlideRecord("sys_dictionary");
+			record.addEncodedQuery("name=" + table + "^internal_type!=collection^ORinternal_type=NULL")
+			record.addQuery("element", listView[i]);
+			record.query();
+
+			if(record.next()){
+				columns.push({
+					"label": record.getValue("column_label"),
+					"name": record.getValue("element")
+				});
+			}	
+		}
+		
+		return columns;
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-07 17:46:19</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>e9508bae4f913a003fb88e401310c772</sys_id>
+        <sys_mod_count>487</sys_mod_count>
+        <sys_name>NVS - TDA Sessions</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sp_widget_e9508bae4f913a003fb88e401310c772</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-17 10:29:01</sys_updated_on>
+        <template><![CDATA[<div>
+  <h3>
+    Technical Design Authority – SST Sessions
+    <div class="pull-right form-inline">
+      <div class="btn-group" role="group">
+    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      		Action <span class="caret"></span>
+    		</button>
+        <ul class="dropdown-menu">
+          <li><a href="csm?id=tda_reports">Statistics</a></li>
+          <li><a href="csm?id=tda_topic&sys_id=-1">New Topic</a></li>
+          <li><a href="csm?id=tda_session&sys_id=-1">New Session</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="" ng-click="setSessionFilter('state', 'Scheduling')">Show Pending Review Sessions</a></li>
+          <li><a href="" ng-click="setSessionFilter('state', 'Ready For TDA')">Show Ready For TDA Sessions</a></li>
+          <li><a href="" ng-click="setSessionFilter('state', 'Active')">Show Active Sessions</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="" ng-click="showUnscheduledTopics()">Show Unscheduled Topics</a></li>
+        </ul>
+  		</div>
+    </div>
+  </h3>
+  <div>
+    <ul class="list-inline">
+      <li ng-repeat="stat in statistics">
+        <i class="fa fa-{{ stat.icon }}" aria-hidden="true"></i> {{ stat.label }}: {{ stat.value }}
+      </li>
+    </ul>
+  </div>
+  <div style="margin-top:30px" ng-repeat="table in tables">
+    <div ng-show="table.visible">
+      <h3 ng-if="table.title">
+      	{{ table.title }}
+	    </h3>
+      <div class="form-inline" style="margin-bottom:20px">
+        <select ng-model="table.filter.field"
+                ng-disabled="table.filter.readonly"
+                class="form-control">
+          <option value="">-- Choose Field --</option>
+          <option ng-repeat="column in table.columns" value="{{ column.name }}">{{ column.label }}</option>
+        </select>
+        <select ng-model="table.filter.operation"
+                ng-disabled="table.filter.readonly"
+                class="form-control">
+          <option value="">-- Choose Operation --</option>
+          <option value="is">Is</option>
+          <option value="is not">Is Not</option>
+          <option value="is empty">Is Empty</option>
+          <option value="is not empty">Is Not Empty</option>
+          <option value="contains">Contains</option>
+        </select>
+        <input ng-show="table.filter.operation.indexOf('empty') == -1"
+               ng-model="table.filter.value" class="form-control"
+               ng-disabled="table.filter.readonly">
+        <span ng-click="table.clearFilter()" ng-hide="table.filter.readonly">Clear</span>
+        <div class="pull-right form-inline" ng-if="table.actions">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="action in table.actions">
+                <a ng-if="action.type == 'link'" ng-href="{{ ::action.href }}">{{ action.label }}</a>
+                <a href="" ng-if="action.type == 'button'" ng-click="::action.click()">{{ action.label }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered table-hover">
+         <thead>
+           <tr>
+             <th ng-repeat="column in table.columns" class="text-{{ $index == 0 ? 'left' : 'center' }}">
+               <span ng-click="table.sortBy(column.name)">{{ column.label }}</span>
+               <span class="pull-right">
+                 <span ng-show="table.propertyName == column.name">
+                   <span ng-show="!table.reverse" class="glyphicon glyphicon-chevron-up"></span>
+                   <span ng-show="table.reverse" class="glyphicon glyphicon-chevron-down"></span>
+                 </span>
+               </span>
+             </th>
+             <th>
+             </th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr ng-repeat="record in result=(table.getData() | filter: table.filterFields | orderBy:table.propertyName:table.reverse)"
+               ng-class="(session && session == record.date) ? 'table-row-active' : ''">
+             <td ng-repeat="column in table.columns" class="text-{{ $index == 0 ? 'left' : 'center' }}" 
+                 ng-click="table.rowClick(record)">
+                 <span ng-show="record[column.name] != ''">{{ record[column.name] }}</span>
+                 <span ng-show="record[column.name] == ''">-</span>
+             </td>
+             <td class="text-center">
+               <span class="glyphicon glyphicon-pencil" ng-click="table.openForm(record)"></span>
+             </td>
+           </tr>
+           <tr ng-if="result.length == 0">
+             <td colspan="{{ table.columns.length + 1 }}">
+                <em>No result</em>
+             </td>
+           </tr>
+         </tbody>
+      </table>
+      <div ng-if="table.paging.enabled">
+      	<ul uib-pager total-items="table.data.length" items-per-page="table.paging.numPerPage" ng-model="table.paging.current"></ul>
+      </div>
+    </div>
+    <div ng-show="!table.visible">
+      <div ng-if="!table.form">
+        <h2>
+          Loading...
+        </h2>
+      </div>
+      <div ng-if="table.form">
+        <h2 ng-click="table.visible = true">
+          <span class="fa fa-arrow-circle-o-left"></span>
+          Back to the list<span class="pull-right">{{ table.record.number }}</span>
+        </h2>
+      	<sp-widget widget="table.form" options="{'hideRelatedList': true}"></sp-widget>
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

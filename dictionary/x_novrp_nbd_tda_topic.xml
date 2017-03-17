@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" label="TDA Topic" max_length="40" name="x_novrp_nbd_tda_topic" type="collection">
+        <element choice="3" default="pending review" label="Approval" max_length="40" name="approval" type="choice">
+            <choice>
+                <element label="Pending Review" sequence="3" value="pending review"/>
+                <element label="Solution Approved" sequence="4" value="approved"/>
+                <element label="Solution Rejected" sequence="5" value="rejected"/>
+            </choice>
+        </element>
+        <element choice="1" label="Architecture Compliant" max_length="40" name="architecture_compliant" type="choice">
+            <choice>
+                <element label="Yes" sequence="1" value="yes"/>
+                <element label="No" sequence="2" value="no"/>
+            </choice>
+        </element>
+        <element label="Description" mandatory="true" max_length="4000" name="description" type="string"/>
+        <element attributes="max_unit=hours" default="00:30:00" label="Duration" mandatory="true" max_length="20" name="duration" type="glide_duration"/>
+        <element label="Feedback" max_length="4000" name="feedback" type="string"/>
+        <element label="Has Presentation" max_length="40" name="has_presentation" read_only="true" type="boolean"/>
+        <element choice="1" label="Do you have a SMS ticket number(s) ?" mandatory="true" max_length="40" name="has_smsc_ticket" type="choice">
+            <choice>
+                <element label="Yes" sequence="1" value="yes"/>
+                <element label="No" sequence="2" value="no"/>
+            </choice>
+        </element>
+        <element attributes="max_unit=hours" label="Man Hours" max_length="40" name="man_hours" type="glide_duration"/>
+        <element choice="1" label="Is It A New Topic ?" mandatory="true" max_length="40" name="new_topic" type="choice">
+            <choice>
+                <element label="Yes" sequence="1" value="yes"/>
+                <element label="No" sequence="2" value="no"/>
+            </choice>
+        </element>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element default="0" label="Number Of Review" max_length="40" name="number_of_review" read_only="true" type="integer"/>
+        <element default="javascript: gs.getUserID();" label="On Behalf Of" max_length="32" name="on_behalf_of" reference="sys_user" type="reference"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element choice="1" label="Post Release Defects" max_length="40" name="post_release_defects" type="choice">
+            <choice>
+                <element label="Yes" sequence="1" value="yes"/>
+                <element label="No" sequence="2" value="no"/>
+            </choice>
+        </element>
+        <element label="Previous Review" max_length="32" name="previous_review" read_only="true" reference="x_novrp_nbd_tda_topic" type="reference"/>
+        <element choice="1" label="Priority" max_length="40" name="priority" type="choice">
+            <choice>
+                <element label="High" sequence="1" value="high"/>
+                <element label="Medium" sequence="2" value="medium"/>
+                <element label="Low" sequence="3" value="low"/>
+            </choice>
+        </element>
+        <element attributes="ref_ac_columns_search=true,ref_ac_columns=short_description,ref_auto_completer=AJAXTableCompleter" label="Reference" max_length="32" name="reference" reference="task" reference_qual="sys_class_name=x_novrp_nbd_demand_ae^ORsys_class_name=x_novrp_nbd_deliverable^EQ" reference_qual_condition="sys_class_name=x_novrp_nbd_demand_ae^ORsys_class_name=x_novrp_nbd_deliverable^EQ" type="reference"/>
+        <element label="Requested Reviewer(s)" max_length="4000" name="requested_reviewer" reference="sys_user" type="glide_list"/>
+        <element label="Session" max_length="32" name="session" reference="x_novrp_nbd_tda_session" reference_qual="date&gt;=javascript:gs.daysAgoStart(0)^state=scheduling^EQ" type="reference" use_reference_qualifier="advanced"/>
+        <element default="javascript:current.demand.short_description" label="Short Description" mandatory="true" max_length="40" name="short_description" type="string"/>
+        <element label="SMS Ticket Number(s)" max_length="200" name="smsc_tickets" type="string"/>
+        <element choice="3" default="new" label="State" max_length="40" name="state" read_only="true" type="choice">
+            <choice>
+                <element label="New" sequence="1" value="new"/>
+                <element label="Pending Schedule" sequence="2" value="pending schedule"/>
+                <element label="Scheduled" sequence="3" value="scheduled"/>
+                <element label="Closed Complete" sequence="4" value="closed complete"/>
+            </choice>
+        </element>
+        <element choice="3" default="no" label="Topic Is Closed" max_length="40" name="topic_is_closed" type="choice">
+            <choice>
+                <element label="Yes" sequence="1" value="yes"/>
+                <element label="No" sequence="2" value="no"/>
+            </choice>
+        </element>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Document Review" value="document review"/>
+                <element label="Impact Assessment" value="impact assessment"/>
+                <element label="Operation Readiness" value="operation readiness"/>
+                <element label="Technical Solution Review" value="technical solution review"/>
+                <element label="Test Review" value="test review"/>
+            </choice>
+        </element>
+        <element choice="1" label="Type Of Solution" max_length="40" name="type_of_solution" type="choice">
+            <choice>
+                <element label="Out Of The Box" sequence="1" value="oob"/>
+                <element label="Custom" sequence="2" value="custom"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="reference"/>
+        </index>
+        <index name="index2">
+            <element name="on_behalf_of"/>
+        </index>
+        <index name="index3">
+            <element name="session"/>
+        </index>
+        <index name="index4">
+            <element name="previous_review"/>
+        </index>
+    </element>
+</database>

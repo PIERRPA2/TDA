@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="" section_id="393f9b814fc5fa003fb88e401310c7bf" sys_domain="global" table="x_novrp_nbd_tda_session" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>719389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>date</element>
+            <position>1</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>f59389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>duration</element>
+            <position>2</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>799389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>3</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>f99389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>4</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>7d9389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>available_time</element>
+            <position>5</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>fd9389644fedfe0062b50fbf0310c75b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>overtime</element>
+            <position>6</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>719389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>7</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>c29389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>attended_by</element>
+            <position>8</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>469389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>watch_list</element>
+            <position>9</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>c69389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>10</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>4a9389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>start_time</element>
+            <position>11</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>ca9389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>end_time</element>
+            <position>12</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>4e9389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>13</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>ce9389644fedfe0062b50fbf0310c75c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>actual_start_time</element>
+            <position>14</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>429389644fedfe0062b50fbf0310c75d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>actual_end_time</element>
+            <position>15</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>c29389644fedfe0062b50fbf0310c75d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>16</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 13:49:09</sys_created_on>
+            <sys_id>469389644fedfe0062b50fbf0310c75d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 13:49:09</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>minutes_of_the_meeting</element>
+            <position>17</position>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-14 15:04:13</sys_created_on>
+            <sys_id>ab5e9eb84f65724062b50fbf0310c735</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_novrp_nbd_tda_session" sys_domain="global" view="Default view">393f9b814fc5fa003fb88e401310c7bf</sys_ui_section>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-14 15:04:13</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_novrp_nbd_tda_session</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-02-18 17:54:39</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>393f9b814fc5fa003fb88e401310c7bf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_novrp_nbd_tda_session</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+            <sys_update_name>sys_ui_section_393f9b814fc5fa003fb88e401310c7bf</sys_update_name>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-02-18 17:54:39</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

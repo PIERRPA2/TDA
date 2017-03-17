@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>true</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <collection>x_novrp_nbd_tda_topic</collection>
+        <condition table="x_novrp_nbd_tda_topic">approvalINapproved,rejected^smsc_ticketsISNOTEMPTY^state=closed complete^EQ<item endquery="false" field="approval" goto="false" newquery="false" operator="IN" or="false" value="approved,rejected"/>
+            <item endquery="false" field="smsc_tickets" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="closed complete"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <content_type>text/html</content_type>
+        <description/>
+        <event_name>approval.cancelled</event_name>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>engine</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p>${mail_script:nvs.stylesheet.get}</p>
+<p>Dear colleague,</p>
+<p>The topic ${short_description} has been&nbsp;review during the TDA Session on the ${session.date}. Please find below&nbsp;more information:</p>
+<p>Feedback: ${feedback}</p>
+<p>SMSC Ticket Number(s): ${smsc_tickets}</p>
+<p>&nbsp;</p>
+<p>Best regards,</p>
+<p>The ServiceNow Team</p>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>NVS - Inform SMSC Team</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields/>
+        <recipient_groups name="NVS.SMSC.Support">72fa239d4f61364062b50fbf0310c7f0</recipient_groups>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>${number} - Change reviewed</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-16 09:49:28</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>67196fd94f61364062b50fbf0310c7b9</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>NVS - Inform SMSC Team</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sysevent_email_action_67196fd94f61364062b50fbf0310c7b9</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-16 10:35:42</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <u_opt_out_for_ntl>false</u_opt_out_for_ntl>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

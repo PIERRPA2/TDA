@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($rootScope, $scope, spUtil) {
+	var c = this;
+	var table = $scope.data.table;
+	c.data.id = $scope.data.id;
+	
+	spUtil.recordWatch($scope, table, "", function(name, data){
+		if(data.sys_id == c.data.id){
+			c.server.update().then(function(response){
+				$scope.data = response;
+			})
+		}
+	});
+	
+	$rootScope.$on("spModel.uiActionComplete", function(evt, response) {
+		var id = (response.isInsert) ? response.sys_id : $scope.data.id;
+		
+		c.data.id = id;
+		c.server.update().then(function(response){
+			$scope.data = response;
+		})
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.button-back{
+	position: absolute;
+  left: -50px;
+  top:-5px;
+  font-size: 45px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>nvs-tda-topic-header-message</id>
+        <internal>false</internal>
+        <link/>
+        <name>NVS - TDA Topic Header Message</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var id = $sp.getParameter("sys_id");
+	var table = "x_novrp_nbd_tda_topic";
+
+	if(input){
+		id = input.id;
+	}
+	
+	data.id = id;
+	data.table = table;
+	data.mandatory_attachment = false;
+	
+	if(!id || !table){
+		return;
+	}
+	
+	if(id == -1){
+		data.mandatory_attachment = true;
+		return;
+	}
+	
+	var glideRecord = new GlideRecord(table);
+	
+	if(glideRecord.get(id)){
+		data.mandatory_attachment = !glideRecord.has_presentation;
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-09 08:55:43</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>601a5b0f4f19ba0062b50fbf0310c7c4</sys_id>
+        <sys_mod_count>166</sys_mod_count>
+        <sys_name>NVS - TDA Topic Header Message</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sp_widget_601a5b0f4f19ba0062b50fbf0310c7c4</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-14 10:06:00</sys_updated_on>
+        <template><![CDATA[<div class="alert alert-danger"
+     ng-if="data.mandatory_attachment">
+  	<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+  	You need to attach a SST TDA presentation template before submitting a presentation  
+</div>]]></template>
+    </sp_widget>
+</record_update>

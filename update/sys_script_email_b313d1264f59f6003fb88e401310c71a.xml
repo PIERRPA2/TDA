@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>nvs.stylesheet.get</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript(current, template, email, email_action, event) {
+	//Put the styles into the email message
+	var stylesheet = new GlideRecord ('content_css');
+	stylesheet.get('name', "HR"); //Stylesheet for email styling
+	template.print('<div style="display: none;"><style>' + stylesheet.style + '</style></div>');
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-07 09:49:09</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>b313d1264f59f6003fb88e401310c71a</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>nvs.stylesheet.get</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sys_script_email_b313d1264f59f6003fb88e401310c71a</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-07 09:58:18</sys_updated_on>
+    </sys_script_email>
+</record_update>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="topic_is_closed" table="x_novrp_nbd_tda_topic" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>topic_is_closed</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Yes</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>1</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 12:07:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a45ca4ec4f6dfe0062b50fbf0310c703</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 12:07:36</sys_updated_on>
+            <value>yes</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>topic_is_closed</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>No</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>2</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 12:07:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e95c6cec4f6dfe0062b50fbf0310c7f2</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 12:07:43</sys_updated_on>
+            <value>no</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>topic_is_closed</element>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-13 12:07:33</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>215cecec4f6dfe0062b50fbf0310c728</sys_id>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_name>topic_is_closed</sys_name>
+            <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+            <sys_update_name>sys_choice_x_novrp_nbd_tda_topic_topic_is_closed</sys_update_name>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-13 12:07:43</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

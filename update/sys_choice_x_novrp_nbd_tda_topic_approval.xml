@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="approval" table="x_novrp_nbd_tda_topic" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Pending Review</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>3</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-03-02 13:55:28</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a58b188d4fdd320062b50fbf0310c78c</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-02 13:56:28</sys_updated_on>
+            <value>pending review</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Solution Approved</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>4</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-02-19 17:32:18</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0993ac694f893e003fb88e401310c744</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-02 13:56:30</sys_updated_on>
+            <value>approved</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>approval</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Solution Rejected</label>
+            <language>en</language>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sequence>5</sequence>
+            <sys_class_name>sys_choice</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-02-19 17:32:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9cb3e4e94f893e003fb88e401310c744</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-02 13:56:32</sys_updated_on>
+            <value>rejected</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>approval</element>
+            <name>x_novrp_nbd_tda_topic</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>paul.galmot</sys_created_by>
+            <sys_created_on>2017-02-19 17:32:18</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>dcb3e4e94f893e003fb88e401310c73b</sys_id>
+            <sys_mod_count>23</sys_mod_count>
+            <sys_name>approval</sys_name>
+            <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+            <sys_update_name>sys_choice_x_novrp_nbd_tda_topic_approval</sys_update_name>
+            <sys_updated_by>paul.galmot</sys_updated_by>
+            <sys_updated_on>2017-03-02 14:50:05</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

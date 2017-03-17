@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, spUtil, $uibModal) {
+  var c = this;
+	
+	c.openForm = function (table, id) {
+		var params = {
+			"table": table,
+			"sys_id": id
+		};
+		
+		spUtil.get("widget-form", params).then(
+			function(response) {
+				c.form = response;
+				c.modalInstance = $uibModal.open({
+					templateUrl: 'modal-related-topic-form',
+					scope: $scope,
+					size: "lg"
+				});
+    });	
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>ul &gt; li{
+	margin-top:10px
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>nvs-tda-related-topic</id>
+        <internal>false</internal>
+        <link/>
+        <name>NVS - TDA Related Topic</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var id = $sp.getParameter("sys_id");
+	var table = $sp.getParameter("table");
+	var previousReview = "";
+	var historic = [];
+	data.no_match = false;
+	data.reviews = [];
+	
+	if(!table || !id){
+		return;
+	}
+	
+	var current = new GlideRecordSecure(table);
+	
+	if(!current.get(id)){
+		data.no_match = true;
+		return;
+	}
+	
+	while(current.previous_review){
+		current = current.previous_review.getRefRecord();
+		var feedback = current.feedback || "No feedback";
+		
+		historic.push({
+			"table": table,
+			"id": current.sys_id.toString(),
+			"number_of_review": parseInt(current.number_of_review),
+			"short_description": current.short_description.toString(),
+			"description": current.description.toString(),
+			"feedback": feedback.toString(),
+			"date": current.session.getDisplayValue(),
+			"number": current.number.toString()
+		})
+	}
+	
+	data.reviews = historic;
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>paul.galmot</sys_created_by>
+        <sys_created_on>2017-03-07 15:39:12</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>6f33ae2a4f113a003fb88e401310c788</sys_id>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>NVS - TDA Related Topic</sys_name>
+        <sys_package display_value="Novartis Business Demand" source="x_novrp_nbd">c67fb93c4f41ba003fb88e401310c770</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Novartis Business Demand">c67fb93c4f41ba003fb88e401310c770</sys_scope>
+        <sys_update_name>sp_widget_6f33ae2a4f113a003fb88e401310c788</sys_update_name>
+        <sys_updated_by>paul.galmot</sys_updated_by>
+        <sys_updated_on>2017-03-14 09:57:10</sys_updated_on>
+        <template><![CDATA[<div style="margin-top:20px; margin-bottom:50px">
+  <h3>
+    Historic
+  </h3>
+  <span ng-if="data.reviews.length == 0" >
+    <em>No result</em>
+  </span>
+  <span ng-if="data.reviews.length > 0" >
+    <ul class="list-unstyled">
+      <li ng-repeat="review in data.reviews"
+          ng-click="c.openForm(review.table, review.id)">
+        <span ng-switch="review.number_of_review">
+          <span ng-switch-when="1">1st review</span>
+          <span ng-switch-when="2">2nd review</span>
+          <span ng-switch-when="3">3rd review</span>
+          <span ng-switch-default>{{review.number_of_review + 1}}th review</span>
+        </span>
+        - {{ review.feedback }} (from {{ review.date }})</li>
+    </ul>
+  </span>
+</div>]]></template>
+    </sp_widget>
+</record_update>
